@@ -6,7 +6,6 @@ A REST API that serves jokes and expressions from the legendary Spanish comedian
 
 - 🎯 Get all jokes with optional category filtering
 - 🎲 Get random jokes
-- 📂 Browse jokes by categories
 - 🔍 Find specific jokes by ID
 - 💾 JSON file data storage
 - 🧪 Comprehensive test suite
@@ -53,9 +52,6 @@ npm test      # Run test suite
 - **GET** `/api/jokes/random` - Get a random joke
 - **GET** `/api/jokes/:id` - Get a specific joke by ID
 
-### Categories
-- **GET** `/api/categories` - Get all available categories with joke counts
-
 ## Example Responses
 
 ### Get All Jokes
@@ -94,37 +90,7 @@ curl http://localhost:3000/api/jokes/random
 }
 ```
 
-### Get Categories
-```bash
-curl http://localhost:3000/api/categories
-```
 
-```json
-{
-  "categories": [
-    {
-      "name": "clásico",
-      "count": 10
-    },
-    {
-      "name": "comparaciones", 
-      "count": 2
-    },
-    {
-      "name": "absurdo",
-      "count": 2
-    }
-  ]
-}
-```
-
-## Available Categories
-
-- **clásico** - Classic phrases and expressions
-- **crisis** - Economic crisis jokes
-- **comparaciones** - Comparison-based jokes
-- **absurdo** - Absurd humor
-- **familia** - Family-related jokes
 
 ## Project Structure
 
@@ -167,7 +133,6 @@ Tests include:
 - ✅ Filter jokes by category
 - ✅ Get random jokes
 - ✅ Get specific jokes by ID
-- ✅ Get categories with counts
 - ✅ Error handling (404, 500)
 
 ## Technical Stack
