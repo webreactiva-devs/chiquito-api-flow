@@ -28,7 +28,7 @@ paths:
           required: false
           schema:
             type: string
-            example: "classic"
+            example: "clásico"
       responses:
         '200':
           description: List of jokes retrieved successfully
@@ -45,18 +45,18 @@ paths:
                     - id: 1
                       type: "phrase"
                       content: "¡Hasta luego, Lucas!"
-                      category: "classic"
+                      category: "clásico"
                     - id: 2
                       type: "phrase"
                       content: "¡Te das cuen!"
-                      category: "classic"
+                      category: "clásico"
                 filtered_by_category:
                   summary: Jokes filtered by category
                   value:
                     - id: 1
                       type: "phrase"
                       content: "¡Hasta luego, Lucas!"
-                      category: "classic"
+                      category: "clásico"
 
   /api/jokes/random:
     get:
@@ -75,7 +75,8 @@ paths:
                 id: 5
                 type: "phrase"
                 content: "¡Fistro duodenal!"
-                category: "classic"
+                category: "clásico"
+
   /api/jokes/{id}:
     get:
       summary: Get a joke by ID
@@ -102,7 +103,7 @@ paths:
                 id: 1
                 type: "phrase"
                 content: "¡Hasta luego, Lucas!"
-                category: "classic"
+                category: "clásico"
         '404':
           description: Joke not found
           content:
@@ -111,6 +112,37 @@ paths:
                 $ref: '#/components/schemas/Error'
               example:
                 error: "Joke not found, fistro"
+
+  /api/categories:
+    get:
+      summary: Get all joke categories
+      description: Returns a list of all available joke categories with the count of jokes in each category
+      tags:
+        - Categories
+      responses:
+        '200':
+          description: List of categories retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+              example:
+                - name: "clásico"
+                  count: 10
+                - name: "crisis"
+                  count: 1
+                - name: "comparaciones"
+                  count: 2
+        '500':
+          description: Server error retrieving categories
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Server error retrieving categories, fistro"
 
 components:
   schemas:
@@ -138,12 +170,31 @@ components:
         category:
           type: string
           description: Category to which the joke belongs
-          example: "classic"
+          example: "clásico"
       example:
         id: 1
         type: "phrase"
         content: "¡Hasta luego, Lucas!"
-        category: "classic"
+        category: "clásico"
+
+    Category:
+      type: object
+      required:
+        - name
+        - count
+      properties:
+        name:
+          type: string
+          description: Category name
+          example: "clásico"
+        count:
+          type: integer
+          description: Number of jokes in this category
+          minimum: 0
+          example: 10
+      example:
+        name: "clásico"
+        count: 10
 
     Error:
       type: object
@@ -158,3 +209,5 @@ components:
 tags:
   - name: Jokes
     description: Operations related to managing and retrieving jokes from Chiquito de la Calzada
+  - name: Categories
+    description: Operations related to joke categories and their metadata

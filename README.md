@@ -52,6 +52,9 @@ npm test      # Run test suite
 - **GET** `/api/jokes/random` - Get a random joke
 - **GET** `/api/jokes/:id` - Get a specific joke by ID
 
+### Categories
+- **GET** `/api/categories` - Get all available joke categories with counts
+
 ## Example Responses
 
 ### Get All Jokes
@@ -88,6 +91,36 @@ curl http://localhost:3000/api/jokes/random
   "content": "¡Fistro duodenal!",
   "category": "clásico"
 }
+```
+
+### Get All Categories
+```bash
+curl http://localhost:3000/api/categories
+```
+
+```json
+[
+  {
+    "name": "clásico",
+    "count": 10
+  },
+  {
+    "name": "crisis",
+    "count": 1
+  },
+  {
+    "name": "comparaciones", 
+    "count": 2
+  },
+  {
+    "name": "absurdo",
+    "count": 2
+  },
+  {
+    "name": "familia",
+    "count": 2
+  }
+]
 ```
 
 
