@@ -131,10 +131,6 @@ paths:
               example:
                 - name: "clásico"
                   count: 10
-                - name: "crisis"
-                  count: 1
-                - name: "comparaciones"
-                  count: 2
         '500':
           description: Server error retrieving categories
           content:
