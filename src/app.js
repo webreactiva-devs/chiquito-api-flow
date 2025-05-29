@@ -38,6 +38,14 @@ app.get("/api/categories", (req, res) => {
   }
 });
 
+app.get("/health", (req, res) => {
+  res.json({
+    status: "OK",
+    message: "Fistro pecador de la pradera",
+    timestamp: new Date().toISOString(),
+  });
+});
+
 app.get("/api/jokes", (req, res) => {
   const { category } = req.query;
 
