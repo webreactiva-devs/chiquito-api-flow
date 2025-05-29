@@ -14,6 +14,30 @@ app.use(express.json());
 const dataPath = join(__dirname, "../data/chiquito.json");
 const { jokes } = JSON.parse(readFileSync(dataPath, "utf8"));
 
+const buildCategoriesWithCount = (jokesData) => {
+  const categoryCount = {};
+
+  jokesData.forEach((joke) => {
+    categoryCount[joke.category] = (categoryCount[joke.category] || 0) + 1;
+  });
+
+  return Object.entries(categoryCount).map(([name, count]) => ({
+    name,
+    count,
+  }));
+};
+
+app.get("/api/categories", (req, res) => {
+  try {
+    const categories = buildCategoriesWithCount(jokes);
+    res.json(categories);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Server error retrieving categories, fistro" });
+  }
+});
+
 app.get("/api/jokes", (req, res) => {
   const { category } = req.query;
 
