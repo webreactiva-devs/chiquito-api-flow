@@ -63,7 +63,7 @@ app.get("/api/jokes/random", (_req, res) => {
 });
 
 app.get("/api/jokes/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.id, 10);
   const joke = jokes.find((j) => j.id === id);
 
   if (!joke) {

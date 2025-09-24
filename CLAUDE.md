@@ -201,3 +201,6 @@ const joke = jokes[Math.floor(Math.random() * jokes.length)]; // Gets random jok
 - No file system write operations (read-only data)
 
 This API is designed for simplicity and educational purposes, focusing on clean code patterns and comprehensive testing rather than enterprise-grade security features.
+- No quiero que añadas información de Claude o Anthropic en el mensaje de commit. No quiero esto:    🤖 Generated with [Claude Code](https://claude.ai/code)                                         │
+│                                                                                                   │
+│   Co-Authored-By: Claude <noreply@anthropic.com>"

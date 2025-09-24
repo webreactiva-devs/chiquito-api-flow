@@ -6,9 +6,11 @@
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
     "test": "node --test tests/*.test.js",
+    "test:agent": "node --test tests/*.test.js && echo \"✅ Tests passed.\" || (echo \"❌ Tests failing. You MUST inspect and fix failing spec before continuing.\" 1>&2; exit 2)",
     "lint": "biome lint src/ tests/",
     "format": "biome format src/ tests/ --write",
-    "check": "biome check src/ tests/"
+    "check": "biome check src/ tests/",
+    "check:agent": "biome check --error-on-warnings src/ tests/ && { echo \"✅ Biome checks passed.\"; } || { echo \"❌ Biome checks failing. Fix the diagnostics above. Then re-run the command.\" 1>&2; exit 2; }"
   },
   "dependencies": {
     "cors": "^2.8.5",
