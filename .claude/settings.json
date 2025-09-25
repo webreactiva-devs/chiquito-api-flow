@@ -1,0 +1,35 @@
+{
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": ["sequential-thinking"],
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '\"\\(.tool_input.command) - \\(.tool_input.description // \"No description\")\"' >> ~/.claude/bash-command-log.txt"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npm run -s check:agent"
+          },
+          {
+            "type": "command",
+            "command": "npm run -s test:agent"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": ["mcp__sequential-thinking__:*"]
+  }
+}

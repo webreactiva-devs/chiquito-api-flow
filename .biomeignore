@@ -1,0 +1,11 @@
+node_modules/
+data/
+dist/
+build/
+.env
+.env.*
+*.log
+coverage/
+.nyc_output/
+.github/
+docs/openapi.yml

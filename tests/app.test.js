@@ -1,5 +1,5 @@
-import { describe, it } from "node:test";
 import assert from "node:assert";
+import { describe, it } from "node:test";
 import request from "supertest";
 import app from "../src/app.js";
 
@@ -82,8 +82,8 @@ describe("Chiquito API", () => {
       assert(Array.isArray(response.body));
 
       response.body.forEach((category) => {
-        assert(Object.hasOwnProperty.call(category, "name"));
-        assert(Object.hasOwnProperty.call(category, "count"));
+        assert(Object.hasOwn(category, "name"));
+        assert(Object.hasOwn(category, "count"));
         assert(typeof category.name === "string");
         assert(typeof category.count === "number");
       });
